@@ -76,6 +76,18 @@ app.get("/users/:id", (req, res) => {
   }
 });
 
+// Using the POST method
+const addUser = (user) => {
+  users["users_list"].push(user);
+  return user;
+};
+
+app.post("/users", (req, res) => {
+  const userToAdd = req.body;
+  addUser(userToAdd);
+  res.send();
+});
+
 app.listen(port, () => {
   console.log(
     `Example app listening at http://localhost:${port}`
