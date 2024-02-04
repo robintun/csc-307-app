@@ -102,6 +102,7 @@ app.get("/users/:id", (req, res) => {
 
 // Using the POST method
 const addUser = (user) => {
+  user.id = String(Math.floor(Math.random() * 1000) + 1); // to ask
   users["users_list"].push(user);
   return user;
 };
@@ -109,14 +110,11 @@ const addUser = (user) => {
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
   addUser(userToAdd);
-  res.send();
+  res.status(201).send(userToAdd); // to ask
 });
 
 // Removing a particular user by id from the list
 const deleteUser = (user) => {
-  // return users["users_list"].filter(
-  //   (id) => user["id"] != id
-  // );
   let index = users['users_list'].findIndex(per => per.id === user.id);
   users['users_list'].splice(index, 1);
 };
