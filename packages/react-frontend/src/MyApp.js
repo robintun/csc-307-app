@@ -15,11 +15,8 @@ function MyApp() {
       if (res.status !== 204) {
         throw new Error("Error removing!")
       }
-      else {
-        return res.json()
-      }
     })
-    .then(setCharacters(updated))
+    .then(() => setCharacters(updated))
     .catch((error) => {
       console.log(error);
     })
