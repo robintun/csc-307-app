@@ -39,7 +39,7 @@ function MyApp() {
           return res.json()
         }
       }) // to ask
-      .then(() => setCharacters([...characters, person]))
+      .then((json) => setCharacters([...characters, json]))
       .catch((error) => {
         console.log(error);
       })
