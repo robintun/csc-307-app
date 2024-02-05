@@ -16,7 +16,8 @@ function MyApp() {
         throw new Error("Error removing!")
       }
     })
-    .then(() => setCharacters(updated))
+    .then(setCharacters(updated)) // updates frontend after clicking delete right away
+    // .then(() => setCharacters(updated)) // updates frontend after clicking delete after refresh
     .catch((error) => {
       console.log(error);
     })
