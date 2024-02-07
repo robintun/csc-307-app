@@ -128,7 +128,7 @@ app.delete("/users/:id", (req, res) => {
   else {
     deleteUser(result);
   }
-  res.send();
+  res.status(204).send("Successful delete!");
 });
 
 app.get("/users", (req, res) => {
