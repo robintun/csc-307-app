@@ -8,7 +8,7 @@ function MyApp() {
 
   function removeOneCharacter(index) {
     const updated = characters.filter(
-      (character) => character.id !== characters[index].id );
+      (character) => character._id !== characters[index]._id );
     
     deleteUser(characters[index])
     .then((res) => {
@@ -16,16 +16,11 @@ function MyApp() {
         throw new Error("Error removing!")
       }
     })
-    //.then(setCharacters(updated)) // updates frontend after clicking delete right away
-    .then(() => setCharacters(updated)) // updates frontend after clicking delete after refresh
+    .then(() => setCharacters(updated))
     .catch((error) => {
       console.log(error);
     })
-  } // to ask
-
-  // function updateList(person) {
-  //   setCharacters([...characters, person]);
-  // }
+  }
   
   function updateList(person) { 
     postUser(person)
@@ -36,7 +31,7 @@ function MyApp() {
         else {
           return res.json()
         }
-      }) // to ask
+      })
       .then((json) => setCharacters([...characters, json]))
       .catch((error) => {
         console.log(error);
@@ -68,7 +63,7 @@ function MyApp() {
   }
   
   function deleteUser(person) {
-    const promise = fetch(`Http://localhost:8000/users/${person.id}`, {
+    const promise = fetch(`Http://localhost:8000/users/${person._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
