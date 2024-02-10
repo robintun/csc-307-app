@@ -40,7 +40,17 @@ app.get("/users", (req, res) => {
       .catch((error) => {
         console.log(error);
       });
-    } else {
+    } 
+    else if (job != undefined) {
+      User.findUserByJob(job).then((result) => {
+        const response = result === undefined ? []:result;
+        res.send(response);
+      })        
+      .catch((error) => {
+          console.log(error);
+    });
+    }
+    else {
       User.getUsers().then((response) => {
         const result = response === undefined ? []:response;
         res.send(result);
